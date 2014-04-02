@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vimeo Cooking Feeder</title>
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-route.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/controllers.js"></script>
+    <script type="text/javascript" src="js/services.js"></script>
+    <link rel="stylesheet" href="css/app.css">
+  </head>
+  <body ng-app="vimeoApp" ng-controller="vimeoAppController">
+    <div>
+        <div class="head blue">Vimeo</div>
+        <div class="navigation-panel">
+            <div class="navigation">Sort by:</div>
+            <div class="navigation blue" ng-click="predicate = 'stats_number_of_likes'; reverse=false">likes</div>
+            <div class="navigation blue" ng-click="predicate = 'stats_number_of_plays'; reverse=false">plays</div>
+            <div class="navigation blue" ng-click="predicate = 'stats_number_of_comments'; reverse=false">comment</div>
+        </div>
+        <div ng-repeat="video in videoList | orderBy:predicate:reverse" class="row">
+            <div class="title blue">{{video.title}}</div>
+            <div class="picture">
+                <a href="{{video.url}}"><img src="{{video.thumbnail_small}}"/></a>
+            </div>
+            <div class="description">{{video.description}}</div>
+            <div class="footer blue">likes:{{video.stats_number_of_likes}}
+                &nbsp plays:{{video.stats_number_of_plays}}
+                &nbsp comments:{{video.stats_number_of_comments}}</div>
+        </div>
+    </div>
+  </body>
+</html>
